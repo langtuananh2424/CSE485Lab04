@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Reader;
 class ReaderController extends Controller
 {
     /**
@@ -11,7 +11,8 @@ class ReaderController extends Controller
      */
     public function index()
     {
-        //
+        $readers = Reader::all();
+        return view('readers.index', compact('readers'));
     }
 
     /**

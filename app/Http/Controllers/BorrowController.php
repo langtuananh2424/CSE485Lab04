@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Borrow;
 use Illuminate\Http\Request;
 
 class BorrowController extends Controller
@@ -11,7 +12,8 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        //
+        $borrows = Borrow::all();
+        return view('borrows.index', compact('borrows'));
     }
 
     /**
