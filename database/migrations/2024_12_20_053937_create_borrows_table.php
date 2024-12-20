@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('book_id');
             $table->foreign('book_id')->references('id')->on('books');
-            $table->unsignedBigInteger('borrower_id');
-            $table->foreign('borrower_id')->references('id')->on('borrowers');
+            $table->unsignedBigInteger('reader_id');
+            $table->foreign('reader_id')->references('id')->on('readers');
             $table->date('borrow_date');
             $table->date('return_date');
             $table->boolean('status')->default(0);
