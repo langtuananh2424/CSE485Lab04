@@ -18,7 +18,7 @@ class BorrowSeeder extends Seeder
         $faker = Faker::create();
         $book = Book::all();
         $reader = Reader::all();
-        foreach (range(1, 10) as $index) {
+        foreach (range(1, 100) as $index) {
             Borrow::create([
                 'book_id' => $book->random()->id,
                 'reader_id' => $reader->random()->id,
