@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Borrow;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,6 +22,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call(BookSeeder::class);
         $this->call(ReaderSeeder::class);
-        $this->call(BookSeeder::class);
+        $this->call(BorrowSeeder::class);
     }
 }
