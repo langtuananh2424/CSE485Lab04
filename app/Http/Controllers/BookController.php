@@ -10,12 +10,10 @@ class BookController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request)
-{
-
-    $books = Book::paginate(5); 
-
-    return view('books.index', compact('books'));
-}
+    {
+        $books = Book::paginate(5);
+        return view('books.index', compact('books'));
+    }
 
     /**
      * Show the form for creating a new resource.
