@@ -6,13 +6,13 @@
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Library-management</a>
+  <a class="navbar-brand" href="{{route('App.index')}}">Library-management</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="{{ route('readers.index') }}">Readers</a>
       </li>
       <li class="nav-item">
@@ -24,7 +24,7 @@
     </ul>
   </div>
 </nav>
-<div class="container mt-4">
+  <div class="container mt-4">
         @yield('content')
     </div>
 </body>

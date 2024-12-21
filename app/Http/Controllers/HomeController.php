@@ -1,21 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Book;
-use Illuminate\Http\Request;
 
-class BookController extends Controller
+use Illuminate\Http\Request;
+use App\Models\Home;
+
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
-{
+    public function index()
+    {
 
-    $books = Book::paginate(5); 
-
-    return view('books.index', compact('books'));
-}
+    return view('App.index');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -64,5 +63,4 @@ class BookController extends Controller
     {
         //
     }
-    
 }

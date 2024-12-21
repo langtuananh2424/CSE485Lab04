@@ -39,46 +39,6 @@
             @endforeach
         </tbody>
     </table>
-    {{$books -> links()}}  
-    @if ($books->hasPages())
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-            {{-- Previous Page Link --}}
-            @if ($books->onFirstPage())
-                <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                </li>
-            @else
-                <li class="page-item">
-                    <a class="page-link" href="{{ $data->previousPageUrl() }}" rel="prev">Previous</a>
-                </li>
-            @endif
-
-            {{-- Pagination Elements --}}
-            @foreach ($books->onEachSide(3) as $i)
-                @if ($i == $books->currentPage())
-                    <li class="page-item active" aria-current="page">
-                        <span class="page-link">{{ $i }}</span>
-                    </li>
-                @else
-                    <li class="page-item">
-                        <a class="page-link" href="{{ $data->url($i) }}">{{ $i }}</a>
-                    </li>
-                @endif
-            @endforeach
-
-            {{-- Next Page Link --}}
-            @if ($data->hasMorePages())
-                <li class="page-item">
-                    <a class="page-link" href="{{ $data->nextPageUrl() }}" rel="next">Next</a>
-                </li>
-            @else
-                <li class="page-item disabled">
-                    <span class="page-link">Next</span>
-                </li>
-            @endif
-        </ul>
-    </nav>
-@endif
+    {{$books -> links('pagination::bootstrap-4')}}  
 @endsection
 </div>    
