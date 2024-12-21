@@ -12,7 +12,8 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-
+        $books = Book::paginate(10);
+        return view('books.index', compact('books'));
     }
 
     /**
@@ -20,7 +21,7 @@ class BookController extends Controller
      */
     public function create()
     {
-
+        return view('books.create');
     }
 
     /**
@@ -28,7 +29,11 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-
+        $request->validate([
+            'name' => 'required',
+            'author' => 'required',
+        ]);
+        Book::create($request->all());
     }
 
     /**
@@ -36,7 +41,9 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-
+        $book = Book::find($id);
+        $borrow = Book::borrow($id);
+        return view('books.show', compact('book'));
     }
 
     /**
@@ -44,7 +51,8 @@ class BookController extends Controller
      */
     public function edit(string $id)
     {
-
+        $book = Book::find($id);
+        return view('books.edit', compact('book'));
     }
 
     /**
@@ -52,7 +60,12 @@ class BookController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
+        $request->validate([
+            'name' => 'required',
+            'author' => 'required',
+        ]);
+        Book::update($request->all());
+        return redirect()->route('books.index')->with('success', 'Book updated successfully');
     }
 
     /**
@@ -60,6 +73,7 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-
+        Book::destroy($id);
+        return redirect()->route('books.index')->with('success', 'Book deleted successfully');
     }
 }
