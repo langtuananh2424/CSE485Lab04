@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -9,10 +9,19 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+    public function index(Request $request)
+{
+    $page = $request->input('page', 1); // Default to page 1 if 'page' is not provided
+
+    // Validate the 'page' input
+    $request->validate([
+        'page' => 'integer|min:1', 
+    ]);
+
+    $books = Book::paginate(10, ['*'], 'page', $page); 
+
+    return view('books.index', compact('books'));
+}
 
     /**
      * Show the form for creating a new resource.
@@ -61,4 +70,5 @@ class BookController extends Controller
     {
         //
     }
+    
 }
