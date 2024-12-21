@@ -11,14 +11,8 @@ class BookController extends Controller
      */
     public function index(Request $request)
 {
-    $page = $request->input('page', 1); // Default to page 1 if 'page' is not provided
 
-    // Validate the 'page' input
-    $request->validate([
-        'page' => 'integer|min:1', 
-    ]);
-
-    $books = Book::paginate(10, ['*'], 'page', $page); 
+    $books = Book::paginate(10); 
 
     return view('books.index', compact('books'));
 }
