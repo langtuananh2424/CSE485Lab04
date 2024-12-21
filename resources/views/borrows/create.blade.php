@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @extends('App.app')
 
 @section('content')
@@ -18,3 +19,8 @@
         <button type="submit" class="btn btn-primary">Mượn</button>
     </form>
 @endsection
+=======
+<div>
+    <!-- It is never too late to be what you might have been. - George Eliot -->
+</div>
+>>>>>>> origin/main

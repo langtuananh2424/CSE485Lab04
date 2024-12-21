@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -11,8 +12,12 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
+<<<<<<< HEAD
         $books = Book::paginate(5);
         return view('books.index', compact('books'));
+=======
+
+>>>>>>> origin/main
     }
 
     /**
@@ -20,7 +25,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -28,7 +33,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -36,7 +41,7 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
@@ -44,7 +49,7 @@ class BookController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**
@@ -52,7 +57,7 @@ class BookController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
     }
 
     /**
@@ -60,7 +65,7 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
     }
     
 }

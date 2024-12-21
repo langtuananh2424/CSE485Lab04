@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @extends('App.app')
 
 @section('content')
@@ -13,3 +14,8 @@
         <button type="submit" class="btn btn-primary">Lưu</button>
     </form>
 @endsection
+=======
+<div>
+    <!-- People find pleasure in different ways. I find it in keeping my mind clear. - Marcus Aurelius -->
+</div>
+>>>>>>> origin/main
