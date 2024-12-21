@@ -79,6 +79,7 @@ class BorrowController extends Controller
      */
     public function destroy(string $id)
     {
+        //
         Borrow::destroy($id);
         return redirect()->route('borrows.index')->with('success', 'Borrow deleted successfully');
     }

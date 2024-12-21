@@ -11,8 +11,7 @@ class ReaderController extends Controller
      */
     public function index()
     {
-        $readers = Reader::paginate(10);
-        return view('readers.index', compact('readers'));
+
     }
 
     /**
@@ -20,7 +19,7 @@ class ReaderController extends Controller
      */
     public function create()
     {
-        return view('readers.create');
+
     }
 
     /**
@@ -28,12 +27,7 @@ class ReaderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'phone' => 'required',
-        ]);
-        Reader::create($request->all());
-        return redirect()->route('readers.index')->with('success', 'Reader created successfully');
+
     }
 
     /**
@@ -41,8 +35,7 @@ class ReaderController extends Controller
      */
     public function show(string $id)
     {
-        $reader = Reader::find($id);
-        return view('readers.show', compact('reader'));
+
     }
 
     /**
@@ -50,8 +43,7 @@ class ReaderController extends Controller
      */
     public function edit(string $id)
     {
-        $reader = Reader::find($id);
-        return view('readers.edit', compact('reader'));
+
     }
 
     /**
@@ -59,11 +51,7 @@ class ReaderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'phone' => 'required',
-        ]);
-        Reader::update($request->all());
+
     }
 
     /**
@@ -71,7 +59,6 @@ class ReaderController extends Controller
      */
     public function destroy(string $id)
     {
-        Reader::destroy($id);
-        return redirect()->route('readers.index')->with('success', 'Reader deleted successfully');
+
     }
 }
