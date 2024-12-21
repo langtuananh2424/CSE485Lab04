@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Borrow;
+use App\Models\Reader;
+use Illuminate\Database\Eloquent\BroadcastableModelEventOccurred;
 use Illuminate\Http\Request;
 
 class BorrowController extends Controller
@@ -12,7 +14,7 @@ class BorrowController extends Controller
      */
     public function index()
     {
-        $borrows = Borrow::all();
+        $borrows = Borrow::paginate(10);
         return view('borrows.index', compact('borrows'));
     }
 
@@ -21,7 +23,7 @@ class BorrowController extends Controller
      */
     public function create()
     {
-        //
+        return view('borrows.create');
     }
 
     /**
@@ -29,7 +31,13 @@ class BorrowController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'book_id' => 'required',
+            'reader_id' => 'required',
+            'borrow_date' => 'required',
+            'status' => 'required',
+        ]);
+        Borrow::create($request->all());
     }
 
     /**
@@ -37,7 +45,8 @@ class BorrowController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $borrow = Borrow::find($id);
+        return view('borrows.show', compact('borrow'));
     }
 
     /**
@@ -45,7 +54,8 @@ class BorrowController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $borrow = Borrow::find($id);
+        return view('borrows.edit', compact('borrow'));
     }
 
     /**
@@ -53,7 +63,15 @@ class BorrowController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'book_id' => 'required',
+            'reader_id' => 'required',
+            'borrow_date' => 'required',
+            'return_date' => 'required',
+            'status' => 'required'
+        ]);
+        Borrow::update($request->all());
+        return redirect()->route('borrows.index')->with('success', 'Borrow updated successfully');
     }
 
     /**
@@ -61,6 +79,7 @@ class BorrowController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Borrow::destroy($id);
+        return redirect()->route('borrows.index')->with('success', 'Borrow deleted successfully');
     }
 }
