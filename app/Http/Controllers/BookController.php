@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Category;
 
 class BookController extends Controller
 {
@@ -21,7 +22,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books.create');
+        $categories = Category::all();
+        return view('books.create', compact('categories'));
     }
 
     /**
@@ -29,20 +31,19 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input('category'));
-//        $request->validate([
-//            'name' => 'required',
-//            'author' => 'required',
-//            'category' => 'required',
-//            'year' => 'required',
-//            'quantity' => 'required',
-//        ]);
-//        try {
-//            Book::create($request->all());
-//            return redirect()->route('books.index')->with('success', 'Book created successfully.');
-//        } catch (\Exception $e) {
-//            return back()->withErrors(['error' => 'Failed to create book: ' . $e->getMessage()]);
-//        }
+        $request->validate([
+            'name' => 'required',
+            'author' => 'required',
+            'category' => 'required',
+            'year' => 'required',
+            'quantity' => 'required',
+        ]);
+        try {
+            Book::create($request->all());
+            return redirect()->route('books.index')->with('success', 'Book created successfully.');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Failed to create book: ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -69,7 +70,8 @@ class BookController extends Controller
     public function edit(string $id)
     {
         $book = Book::find($id);
-        return view('books.edit', compact('book'));
+        $categories = Category::all();
+        return view('books.edit', compact('book', 'categories'));
     }
 
     /**
@@ -80,8 +82,11 @@ class BookController extends Controller
         $request->validate([
             'name' => 'required',
             'author' => 'required',
+            'category' => 'required',
+            'year' => 'required',
+            'quantity' => 'required',
         ]);
-        Book::update($request->all());
+        Book::find($id)->update($request->all());
         return redirect()->route('books.index')->with('success', 'Book updated successfully');
     }
 

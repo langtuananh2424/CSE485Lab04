@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use App\Models\Book;
+use App\Models\Category;
 
 class BookSeeder extends Seeder
 {
@@ -17,10 +18,11 @@ class BookSeeder extends Seeder
         $faker = Faker::create();
 
         foreach (range(1, 100) as $index) {
+            $randomCategory = Category::all()->random();
             Book::create([
                 'name' => $faker->sentence,
                 'author' => $faker->name,
-                'category' => $faker->randomElement(['Khoa học viễn tưởng', 'Lịch sử', 'Tiểu thuyết', 'Kinh doanh']),
+                'category' => $randomCategory->name,
                 'year' => $faker->year,
                 'quantity' => $faker->numberBetween(1, 10),
             ]);
