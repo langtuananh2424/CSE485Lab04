@@ -3,7 +3,7 @@
     <div class="container">
         <h1>Danh sách Đọc Giả</h1>
         <a href="{{route('readers.create')}}" class="btn btn-primary">Add Reader</a>
-        <table>
+        <table class="table table">
             <thead>
             <tr>
                 <th>Id</th>
@@ -11,6 +11,7 @@
                 <th>Birthday</th>
                 <th>Address</th>
                 <th>Phone</th>
+                <th colspan="3">Action</th>
             </tr>
             </thead>
             <tbody>

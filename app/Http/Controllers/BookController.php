@@ -42,8 +42,16 @@ class BookController extends Controller
     public function show(string $id)
     {
         $book = Book::find($id);
-        $borrow = Book::borrow($id);
-        return view('books.show', compact('book'));
+        $borrows = $book->borrows;
+//        foreach ($borrows as $borrow) {
+//            echo "Người Mượn: " . $borrow->reader->name;
+//            echo "<br>";
+//            echo "Ngày mượn: " . $borrow->borrow_date;
+//            echo "<br>";
+//            echo "Ngày trả dự kiến: " . $borrow->return_date;
+//            echo "<br>";
+//        }
+        return view('books.show', compact('book', 'borrows'));
     }
 
     /**

@@ -3,7 +3,7 @@
     <div class="container">
         <h1>Danh sách Books</h1>
         <a href="{{route('books.create')}}" class="btn btn-primary">Add Book</a>
-        <table>
+        <table class="table">
             <thead>
             <tr>
                 <th>Id</th>
@@ -12,6 +12,7 @@
                 <th>Category</th>
                 <th>Year</th>
                 <th>Quantity</th>
+                <th colspan="3">Action</th>
             </tr>
             </thead>
             <tbody>
