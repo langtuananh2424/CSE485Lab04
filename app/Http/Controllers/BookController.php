@@ -10,9 +10,9 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $books = Book::paginate(10);
+        $books = Book::latest()->paginate(10);
         return view('books.index', compact('books'));
     }
 
@@ -29,11 +29,20 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'author' => 'required',
-        ]);
-        Book::create($request->all());
+        dd($request->input('category'));
+//        $request->validate([
+//            'name' => 'required',
+//            'author' => 'required',
+//            'category' => 'required',
+//            'year' => 'required',
+//            'quantity' => 'required',
+//        ]);
+//        try {
+//            Book::create($request->all());
+//            return redirect()->route('books.index')->with('success', 'Book created successfully.');
+//        } catch (\Exception $e) {
+//            return back()->withErrors(['error' => 'Failed to create book: ' . $e->getMessage()]);
+//        }
     }
 
     /**
