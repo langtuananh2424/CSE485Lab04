@@ -25,7 +25,7 @@
                     <td><a href="{{route('readers.show', $reader->id)}}" class="btn btn-info">Xem</a></td>
                     <td><a href="{{route('readers.edit', $reader->id)}}" class="btn btn-warning">Edit</a></td>
                     <td>
-                        <form action="{{route('borrows.destroy', $reader->id)}}" method="POST" style="display: inline-block;">
+                        <form action="{{route('readers.destroy', $reader->id)}}" method="POST" style="display: inline-block;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xoá ?')">Xoá</button>

@@ -12,7 +12,7 @@ class ReaderController extends Controller
      */
     public function index()
     {
-        $readers = Reader::paginate(10);
+        $readers = Reader::latest()->paginate(10);
         return view('readers.index', compact('readers'));
     }
 
@@ -36,6 +36,7 @@ class ReaderController extends Controller
             'phone' => 'required',
         ]);
         Reader::create($request->all());
+        return redirect()->route('readers.index')->with('success', 'Reader created successfully');
     }
 
     /**
@@ -44,7 +45,8 @@ class ReaderController extends Controller
     public function show(string $id)
     {
         $reader = Reader::find($id);
-        return view('reader.show', compact('reader'));
+        $borrows = $reader->borrows;
+        return view('readers.show', compact('reader', 'borrows'));
     }
 
     /**
@@ -53,7 +55,7 @@ class ReaderController extends Controller
     public function edit(string $id)
     {
         $reader = Reader::find($id);
-        return view('reader.edit', compact('reader'));
+        return view('readers.edit', compact('reader'));
     }
 
     /**
@@ -67,7 +69,8 @@ class ReaderController extends Controller
            'address' => 'required',
            'phone' => 'required',
         ]);
-        Reader::update($request->all());
+        Reader::find($id)->update($request->all());
+        return redirect()->route('readers.index')->with('success', 'Reader updated successfully');
     }
 
     /**
@@ -75,7 +78,7 @@ class ReaderController extends Controller
      */
     public function destroy(string $id)
     {
-        Book::destroy($id);
-        return redirect()->route('reader.index')->with('success', 'Reader has been deleted');
+        Reader::destroy($id);
+        return redirect()->route('readers.index')->with('success', 'Reader has been deleted');
     }
 }
