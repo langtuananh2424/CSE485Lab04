@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 @extends('App.app')
 
 @section('content')
@@ -13,8 +13,4 @@
         <button type="submit" class="btn btn-primary">Thêm</button>
     </form>
 @endsection
-=======
-<div>
-    <!-- When there is no desire, all things are at peace. - Laozi -->
-</div>
->>>>>>> origin/main
+

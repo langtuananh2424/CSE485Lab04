@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 @extends('App.app')
 
 @section('content')
@@ -13,8 +13,4 @@
         <button type="submit" class="btn btn-primary">Thêm</button>
     </form>
 @endsection
-=======
-<div>
-    <!-- An unexamined life is not worth living. - Socrates -->
-</div>
->>>>>>> origin/main
+
