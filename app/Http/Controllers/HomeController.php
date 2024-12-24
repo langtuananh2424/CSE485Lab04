@@ -1,20 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Models\Book;
 
-class BookController extends Controller
+use Illuminate\Http\Request;
+use App\Models\Home;
+
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
 
-        $books = Book::paginate(5);
-        return view('books.index', compact('books'));
-
+    return view('App.index');
     }
 
     /**
@@ -22,7 +21,7 @@ class BookController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -30,7 +29,7 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -38,7 +37,7 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-
+        //
     }
 
     /**
@@ -46,7 +45,7 @@ class BookController extends Controller
      */
     public function edit(string $id)
     {
-
+        //
     }
 
     /**
@@ -54,7 +53,7 @@ class BookController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
+        //
     }
 
     /**
@@ -62,7 +61,6 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-
+        //
     }
-    
 }

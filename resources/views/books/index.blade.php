@@ -1,4 +1,5 @@
-@extends('layouts.App')
+
+@extends('App.app')
 @section('content')
     <div class="container">
         <h1>Danh sách Books</h1>
@@ -34,7 +35,8 @@
                     </td>
                 </tr>
             @endforeach
-            </tbody>
-        </table>
-        {{ $books->links('pagination::bootstrap-4') }}  <p>Showing page {{ $books->currentPage() }} of {{ $books->lastPage() }}</p>  </div>
+        </tbody>
+    </table>
+    {{$books -> links('pagination::bootstrap-4')}}  
 @endsection
+</div>    

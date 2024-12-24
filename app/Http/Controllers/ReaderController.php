@@ -11,7 +11,8 @@ class ReaderController extends Controller
      */
     public function index()
     {
-
+        $readers = Reader::paginate(10);
+        return view("readers.index", compact("readers"));
     }
 
     /**
@@ -19,7 +20,7 @@ class ReaderController extends Controller
      */
     public function create()
     {
-
+        return view("readers.create");
     }
 
     /**
