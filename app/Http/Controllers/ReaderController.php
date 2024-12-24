@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Models\Reader;
 class ReaderController extends Controller
@@ -11,8 +12,8 @@ class ReaderController extends Controller
      */
     public function index()
     {
-        $readers = Reader::paginate(10);
-        return view("readers.index", compact("readers"));
+        $readers = Reader::latest()->paginate(10);
+        return view('readers.index', compact('readers'));
     }
 
     /**
@@ -20,7 +21,7 @@ class ReaderController extends Controller
      */
     public function create()
     {
-        return view("readers.create");
+        return view('readers.create');
     }
 
     /**
@@ -28,7 +29,14 @@ class ReaderController extends Controller
      */
     public function store(Request $request)
     {
-
+        $request->validate([
+            'name' => 'required',
+            'birthday' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+        ]);
+        Reader::create($request->all());
+        return redirect()->route('readers.index')->with('success', 'Reader created successfully');
     }
 
     /**
@@ -36,7 +44,9 @@ class ReaderController extends Controller
      */
     public function show(string $id)
     {
-
+        $reader = Reader::find($id);
+        $borrows = $reader->borrows;
+        return view('readers.show', compact('reader', 'borrows'));
     }
 
     /**
@@ -44,7 +54,8 @@ class ReaderController extends Controller
      */
     public function edit(string $id)
     {
-
+        $reader = Reader::find($id);
+        return view('readers.edit', compact('reader'));
     }
 
     /**
@@ -52,7 +63,14 @@ class ReaderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
+        $request->validate([
+           'name' => 'required',
+           'birthday' => 'required',
+           'address' => 'required',
+           'phone' => 'required',
+        ]);
+        Reader::find($id)->update($request->all());
+        return redirect()->route('readers.index')->with('success', 'Reader updated successfully');
     }
 
     /**
@@ -60,6 +78,7 @@ class ReaderController extends Controller
      */
     public function destroy(string $id)
     {
-
+        Reader::destroy($id);
+        return redirect()->route('readers.index')->with('success', 'Reader has been deleted');
     }
 }
